@@ -1,0 +1,21 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.td,
+.th {
+  border: 1px solid black;
+  text-align: center;
+  padding: 8px;
+}
+.tr:nth-child(even) {
+  background-color: bisque;
+}
+.button {
+  background-color: lightblue;
+  color: black;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: bold;
+}
