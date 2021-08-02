@@ -1,0 +1,22 @@
+:root {
+  --fontFamily: 'Segoe UI';
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--fontFamily);
+}
+td,
+th {
+  border: 1px solid black;
+  text-align: center;
+  padding: 8px;
+}
+tr:nth-child(even) {
+  background-color: bisque;
+}
+#info {
+  font-size: large;
+  font-family: var(--fontFamily);
+}
