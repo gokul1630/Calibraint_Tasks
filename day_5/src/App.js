@@ -14,7 +14,7 @@ function App(props) {
         <NavBar />
         <Route exact path="/" component={Todos}></Route>
         <Route exact path="/todo" component={AddTodo}></Route>
-        <Route exact path="/edit/:id" component={EditTodo}></Route>
+        <Route exact path="/edit" component={EditTodo}></Route>
       </Provider>
     </HashRouter>
   );

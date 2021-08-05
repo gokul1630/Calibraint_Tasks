@@ -23,6 +23,7 @@ function AddTodo(props) {
             value={todo}
             onChange={(e) => setTodo(e.target.value)}
             placeholder="Add new todo"
+            required
           />
         </Form.Group>
         <Button className="btn" variant="primary mb-3" type="submit">
