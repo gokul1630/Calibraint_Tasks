@@ -4,7 +4,6 @@ import { HashRouter, Route } from 'react-router-dom';
 import AddTodo from './Components/AddTodo';
 import NavBar from './Components/NavBar';
 import Todos from './Components/Todos';
-import EditTodo from './Components/EditTodo';
 import { store } from './redux/store';
 
 function App(props) {
@@ -14,7 +13,6 @@ function App(props) {
         <NavBar />
         <Route exact path="/" component={Todos}></Route>
         <Route exact path="/todo" component={AddTodo}></Route>
-        <Route exact path="/edit" component={EditTodo}></Route>
       </Provider>
     </HashRouter>
   );
