@@ -17,7 +17,9 @@ function Todos(props) {
     client(`/todo/deleteTodo`, {
       method: 'DELETE',
       data: { todoId: id, userId: userId },
-    }).then((response) => dispatch(todos(response)));
+    }).then(() =>
+      dispatch(todos(state.todoList.filter((key) => key._id !== id)))
+    );
   };
 
   const saveTodo = () => {
