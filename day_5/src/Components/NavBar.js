@@ -1,17 +1,23 @@
-import React from 'react';
-import { Container, Navbar, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
+import { Container, Nav, Navbar } from 'react-bootstrap';
 
 function NavBar(props) {
   return (
-    <Navbar bg="dark">
+    <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand>
-          <Link to="/">Todo</Link>
-        </Navbar.Brand>
+        <Navbar.Brand href="#home">Todos</Navbar.Brand>
         <Nav className="me-auto">
-          <Link to="/todo">Add Todo</Link>
+          <Nav.Link href="#todos">Home</Nav.Link>
+          <Nav.Link href="#addTodo">Add Todo</Nav.Link>
+          <Nav.Link
+            href="#/"
+            onClick={() => {
+              localStorage.clear();
+            }}
+          >
+            Logout
+          </Nav.Link>
         </Nav>
       </Container>
     </Navbar>
