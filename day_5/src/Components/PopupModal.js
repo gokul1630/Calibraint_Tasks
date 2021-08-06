@@ -1,20 +1,20 @@
 import React from 'react';
 import { Button, FormControl, InputGroup, Modal } from 'react-bootstrap';
 
-function PopupModal({ show, setShow, todo, setTodo, click }) {
+function PopupModal({ show, setShow, todo, setTodo, click, dispatch }) {
   return (
     <Modal
       aria-labelledby="contained-modal-title-vcenter"
       centered
       show={show}
-      onHide={() => setShow(!show)}
+      onHide={() => dispatch(setShow(!show))}
     >
       <Modal.Header closeButton>
         <InputGroup>
           <FormControl
             placeholder="Edit Todo"
             value={todo}
-            onChange={(e) => setTodo(e.target.value)}
+            onChange={(e) => dispatch(setTodo(e.target.value))}
             aria-label="Username"
             aria-describedby="basic-addon1"
           />
