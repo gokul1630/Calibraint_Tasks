@@ -1,0 +1,14 @@
+.forms {
+  padding: 1rem;
+  width: 350px;
+  margin: 6rem auto;
+  padding: 2rem 0;
+  box-shadow: 5px 10px 8px 10px #afafaf;
+  border-radius: 10px;
+}
+.bs-form {
+  margin: 10px;
+}
+.signup-link {
+  text-decoration: none;
+}
