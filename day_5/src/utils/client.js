@@ -1,6 +1,7 @@
 import axios from 'axios';
+import constants from '../constants';
 
-const URL = 'http://localhost:1234';
+const URL = constants.BACKEND_URL;
 
 const client = async (endPoint, { ...config }) => {
   config.url = `${URL}${endPoint}`;
