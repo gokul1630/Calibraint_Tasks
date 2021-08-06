@@ -10,9 +10,7 @@ function App(props) {
   return (
     <HashRouter basename="/">
       <Provider store={store}>
-        <NavBar />
-        <Route exact path="/" component={Todos}></Route>
-        <Route exact path="/todo" component={AddTodo}></Route>
+          <Route exact path="/" component={Loader}></Route>
       </Provider>
     </HashRouter>
   );
