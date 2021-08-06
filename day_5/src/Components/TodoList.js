@@ -16,7 +16,7 @@ const TodoList = ({
           href="!#"
           onClick={(e) => {
             e.preventDefault();
-            editTodo(id);
+            editTodo(id, todo);
           }}
         >
           edit
@@ -26,7 +26,7 @@ const TodoList = ({
           href="!#"
           onClick={(e) => {
             e.preventDefault();
-            completeTodo(id, todo, completed);
+            completeTodo(id,todo,completed);
           }}
         >
           complete

@@ -22,34 +22,29 @@ function Todos(props) {
     );
   };
 
-  const saveTodo = () => {
+  const saveTodo = (id, todo, completed) => {
+    if (state.id === null) {
+      completed = !completed;
+    }
     client('/todo/updateTodo', {
       method: 'PATCH',
-      data: { todoId: state.id, todo: state.todo },
+      data: {
+        todoId: state.id ? state.id : id,
+        todo: state.todo ? state.todo : todo,
+        completed: completed,
+      },
     })
       .then(() => {
+        setEffect(Math.random());
         dispatch(setShow(false));
       })
       .catch((err) => console.log(err));
   };
-  const setTodoComplete = (id, todo, completed) => {
-    client('/todo/updateTodo', {
-      method: 'PATCH',
-      data: { todoId: id, todo: todo, completed: !completed },
-    })
-      .then((res) => {
-        setEffect(Math.random());
-      })
-      .catch((err) => console.log(err));
-  };
-  const findTodo = (id) => {
+
+  const findTodo = (id, todo) => {
     dispatch(setId(id));
-    client('/todo/findOneTodo', { method: 'POST', data: { todoId: id } })
-      .then((response) => {
-        dispatch(setTodo(response.todo));
-        dispatch(setShow(true));
-      })
-      .catch((err) => console.log(err));
+    dispatch(setTodo(todo));
+    dispatch(setShow(true));
   };
 
   useEffect(() => {
@@ -64,8 +59,7 @@ function Todos(props) {
         dispatch(todos(response));
       })
       .catch((err) => console.log(err));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.show, effect]);
+  }, [dispatch, effect]);
 
   return (
     <>
@@ -94,7 +88,7 @@ function Todos(props) {
                   todo={todoItem.todo}
                   key={todoItem._id}
                   completed={todoItem.completed}
-                  completeTodo={setTodoComplete}
+                  completeTodo={saveTodo}
                   editTodo={findTodo}
                   id={todoItem._id}
                   deleteTodo={deleteTodo}
