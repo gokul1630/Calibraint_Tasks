@@ -1,9 +1,9 @@
-import { Button, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import '../styles/form.css';
+import { Button, Form } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import '../styles/form.css'
 
 function SignUp(props) {
-  const { submit, user, setUser, setPassword, password } = props;
+  const { submit, user, setUser, setPassword, password } = props
 
   return (
     <div className="forms">
@@ -40,7 +40,7 @@ function SignUp(props) {
         </p>
       </Form>
     </div>
-  );
+  )
 }
 
-export default SignUp;
+export default SignUp

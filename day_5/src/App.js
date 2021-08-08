@@ -1,13 +1,13 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import { HashRouter, Route, Switch } from 'react-router-dom';
-import Loader from './Components/Loader';
-import NavBar from './Components/NavBar';
-import AddTodoContainer from './container/AddTodoContainer';
-import LoginContainer from './container/LoginContainer';
-import SignUpContainer from './container/SignUpContainer';
-import TodoContainer from './container/TodoContainer';
-import { store } from './redux/store';
+import React from 'react'
+import { Provider } from 'react-redux'
+import { HashRouter, Route, Switch } from 'react-router-dom'
+import Loader from './Components/Loader'
+import NavBar from './Components/NavBar'
+import AddTodoContainer from './container/AddTodoContainer'
+import LoginContainer from './container/LoginContainer'
+import SignUpContainer from './container/SignUpContainer'
+import TodoContainer from './container/TodoContainer'
+import { store } from './redux/store'
 
 function App(props) {
   const NavRoute = ({ exact, path, component: Component }) => (
@@ -21,7 +21,7 @@ function App(props) {
         </div>
       )}
     />
-  );
+  )
 
   return (
     <HashRouter basename="/">
@@ -39,7 +39,7 @@ function App(props) {
         </Switch>
       </Provider>
     </HashRouter>
-  );
+  )
 }
 
-export default App;
+export default App

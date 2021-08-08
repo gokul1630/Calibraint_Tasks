@@ -15,8 +15,8 @@ const TodoTable = ({
         <a
           href="!#"
           onClick={(e) => {
-            e.preventDefault();
-            editTodo(id, todo);
+            e.preventDefault()
+            editTodo(id, todo)
           }}
         >
           edit
@@ -25,8 +25,8 @@ const TodoTable = ({
         <a
           href="!#"
           onClick={(e) => {
-            e.preventDefault();
-            completeTodo(id, todo, completed);
+            e.preventDefault()
+            completeTodo(id, todo, completed)
           }}
         >
           complete
@@ -35,15 +35,15 @@ const TodoTable = ({
         <a
           href="!#"
           onClick={(e) => {
-            e.preventDefault();
-            deleteTodo(id);
+            e.preventDefault()
+            deleteTodo(id)
           }}
         >
           delete
         </a>
       </td>
     </tr>
-  );
-};
+  )
+}
 
-export default TodoTable;
+export default TodoTable

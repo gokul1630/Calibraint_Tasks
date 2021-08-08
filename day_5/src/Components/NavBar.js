@@ -1,6 +1,6 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import React from 'react'
+import { Container, Nav, Navbar } from 'react-bootstrap'
 
 function NavBar(props) {
   return (
@@ -13,7 +13,7 @@ function NavBar(props) {
           <Nav.Link
             href="#/"
             onClick={() => {
-              localStorage.clear();
+              localStorage.clear()
             }}
           >
             Logout
@@ -21,7 +21,7 @@ function NavBar(props) {
         </Nav>
       </Container>
     </Navbar>
-  );
+  )
 }
 
-export default NavBar;
+export default NavBar

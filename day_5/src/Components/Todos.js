@@ -1,11 +1,11 @@
-import React from 'react';
-import { Table } from 'react-bootstrap';
-import PopupModal from './PopupModal';
-import TodoTable from './TodoTable';
+import React from 'react'
+import { Table } from 'react-bootstrap'
+import PopupModal from './PopupModal'
+import TodoTable from './TodoTable'
 
 function Todos(props) {
   const { saveTodo, deleteTodo, findTodo, data, setShow, setTodo, dispatch } =
-    props;
+    props
   return (
     <>
       <PopupModal
@@ -39,13 +39,13 @@ function Todos(props) {
                   id={todoItem._id}
                   deleteTodo={deleteTodo}
                 />
-              );
+              )
             })}
           </tbody>
         </Table>
       </div>
     </>
-  );
+  )
 }
 
-export default Todos;
+export default Todos

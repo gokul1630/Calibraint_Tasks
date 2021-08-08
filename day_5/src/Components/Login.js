@@ -1,9 +1,9 @@
-import { Button, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import '../styles/form.css';
+import { Button, Form } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import '../styles/form.css'
 
 function Login(props) {
-  const { submit, user, setUsers, setPassword, password } = props;
+  const { submit, user, setUsers, setPassword, password } = props
 
   return (
     <div className="forms">
@@ -40,7 +40,7 @@ function Login(props) {
         </p>
       </Form>
     </div>
-  );
+  )
 }
 
-export default Login;
+export default Login

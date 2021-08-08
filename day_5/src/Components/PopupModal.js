@@ -1,8 +1,8 @@
-import React from 'react';
-import { Button, FormControl, InputGroup, Modal } from 'react-bootstrap';
+import React from 'react'
+import { Button, FormControl, InputGroup, Modal } from 'react-bootstrap'
 
 function PopupModal(props) {
-  const { show, setShow, todo, setTodo, click, dispatch } = props;
+  const { show, setShow, todo, setTodo, click, dispatch } = props
   return (
     <Modal
       aria-labelledby="contained-modal-title-vcenter"
@@ -27,7 +27,7 @@ function PopupModal(props) {
         </Button>
       </Modal.Footer>
     </Modal>
-  );
+  )
 }
 
-export default PopupModal;
+export default PopupModal

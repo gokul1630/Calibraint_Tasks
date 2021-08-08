@@ -1,5 +1,5 @@
-import React from 'react';
-import { Button, Form } from 'react-bootstrap';
+import React from 'react'
+import { Button, Form } from 'react-bootstrap'
 
 function AddTodo({ dispatch, submit, setTodo }) {
   return (
@@ -24,7 +24,7 @@ function AddTodo({ dispatch, submit, setTodo }) {
         </Button>
       </Form>
     </div>
-  );
+  )
 }
 
-export default AddTodo;
+export default AddTodo
