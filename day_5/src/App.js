@@ -1,12 +1,12 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { HashRouter, Route, Switch } from 'react-router-dom';
-import AddTodo from './Components/AddTodo';
-import Login from './Components/Login';
-import NavBar from './Components/NavBar';
-import SignUp from './Components/Signup';
-import Todos from './Components/Todos';
 import Loader from './Components/Loader';
+import NavBar from './Components/NavBar';
+import AddTodoContainer from './container/AddTodoContainer';
+import LoginContainer from './container/LoginContainer';
+import SignUpContainer from './container/SignUpContainer';
+import TodoContainer from './container/TodoContainer';
 import { store } from './redux/store';
 
 function App(props) {
@@ -28,10 +28,14 @@ function App(props) {
       <Provider store={store}>
         <Switch>
           <Route exact path="/" component={Loader}></Route>
-          <Route exact path="/login" component={Login}></Route>
-          <Route exact path="/signup" component={SignUp}></Route>
-          <NavRoute exact path="/todos" component={Todos}></NavRoute>
-          <NavRoute exact path="/addTodo" component={AddTodo}></NavRoute>
+          <Route exact path="/login" component={LoginContainer}></Route>
+          <Route exact path="/signup" component={SignUpContainer}></Route>
+          <NavRoute exact path="/todos" component={TodoContainer}></NavRoute>
+          <NavRoute
+            exact
+            path="/addTodo"
+            component={AddTodoContainer}
+          ></NavRoute>
         </Switch>
       </Provider>
     </HashRouter>

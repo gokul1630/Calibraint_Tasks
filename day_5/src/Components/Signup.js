@@ -1,25 +1,9 @@
-import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../styles/form.css';
-import client from '../utils/client';
 
 function SignUp(props) {
-  const [user, setUser] = useState('');
-  const [password, setPassword] = useState('');
-  const history = useHistory();
-  const submit = (e) => {
-    e.preventDefault();
-    client('/user/signUpUser', {
-      method: 'PUT',
-      data: { user: user, password: password },
-    })
-      .then((response) => {
-        localStorage.setItem('user', JSON.stringify(response));
-        history.push('/todos');
-      })
-      .catch((err) => alert(err));
-  };
+  const { submit, user, setUser, setPassword, password } = props;
 
   return (
     <div className="forms">

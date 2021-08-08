@@ -1,4 +1,4 @@
-const TodoList = ({
+const TodoTable = ({
   todo,
   id,
   completed,
@@ -26,7 +26,7 @@ const TodoList = ({
           href="!#"
           onClick={(e) => {
             e.preventDefault();
-            completeTodo(id,todo,completed);
+            completeTodo(id, todo, completed);
           }}
         >
           complete
@@ -46,4 +46,4 @@ const TodoList = ({
   );
 };
 
-export default TodoList;
+export default TodoTable;
