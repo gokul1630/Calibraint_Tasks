@@ -3,7 +3,6 @@ import { Provider } from 'react-redux'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import Loader from './Components/Loader'
 import NavBar from './Components/NavBar'
-import AddTodoContainer from './container/AddTodoContainer'
 import LoginContainer from './container/LoginContainer'
 import SignUpContainer from './container/SignUpContainer'
 import TodoContainer from './container/TodoContainer'
@@ -31,11 +30,6 @@ function App(props) {
           <Route exact path="/login" component={LoginContainer}></Route>
           <Route exact path="/signup" component={SignUpContainer}></Route>
           <NavRoute exact path="/todos" component={TodoContainer}></NavRoute>
-          <NavRoute
-            exact
-            path="/addTodo"
-            component={AddTodoContainer}
-          ></NavRoute>
         </Switch>
       </Provider>
     </HashRouter>

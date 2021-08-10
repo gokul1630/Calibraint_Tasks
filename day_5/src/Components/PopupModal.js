@@ -1,31 +1,65 @@
 import React from 'react'
-import { Button, FormControl, InputGroup, Modal } from 'react-bootstrap'
+import { Button, Form, Modal } from 'react-bootstrap'
+import '../styles/button.css'
 
 function PopupModal(props) {
-  const { show, setShow, todo, setTodo, click, dispatch } = props
+  const {
+    show,
+    setShow,
+    todo,
+    setTodo,
+    click,
+    dispatch,
+    description,
+    setDescription,
+  } = props
   return (
     <Modal
+      size="sm"
       aria-labelledby="contained-modal-title-vcenter"
       centered
       show={show}
-      onHide={() => dispatch(setShow(!show))}
+      onHide={() => {
+        dispatch(setShow(!show))
+        dispatch(setDescription(''))
+        dispatch(setTodo(''))
+      }}
     >
-      <Modal.Header closeButton>
-        <InputGroup>
-          <FormControl
-            placeholder="Edit Todo"
+      <Form
+        className="bs-form"
+        onSubmit={(e) => {
+          click(e)
+          dispatch(setDescription(''))
+          dispatch(setTodo(''))
+        }}
+      >
+        <Form.Group>
+          <h3>Add Todo</h3>
+          <h5>Add Title</h5>
+          <Form.Control
+            type="text"
             value={todo}
+            className="input"
             onChange={(e) => dispatch(setTodo(e.target.value))}
-            aria-label="Username"
-            aria-describedby="basic-addon1"
+            placeholder="Add new todo"
+            required
           />
-        </InputGroup>
-      </Modal.Header>
-      <Modal.Footer>
-        <Button variant="primary" onClick={() => click()}>
-          Save Changes
+          <br />
+          <h5>Add Description</h5>
+          <Form.Control
+            as="textarea"
+            rows={3}
+            value={description}
+            type="text"
+            className="input"
+            onChange={(e) => dispatch(setDescription(e.target.value))}
+            placeholder="Add new todo"
+          />
+        </Form.Group>
+        <Button className="btn" variant="primary mb-3" type="submit">
+          Submit
         </Button>
-      </Modal.Footer>
+      </Form>
     </Modal>
   )
 }

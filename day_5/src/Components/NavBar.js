@@ -6,10 +6,8 @@ function NavBar(props) {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="#home">Todos</Navbar.Brand>
-        <Nav className="me-auto">
-          <Nav.Link href="#todos">Home</Nav.Link>
-          <Nav.Link href="#addTodo">Add Todo</Nav.Link>
+        <Navbar.Brand href="#todos">Todos</Navbar.Brand>
+        <Nav>
           <Nav.Link
             href="#/"
             onClick={() => {

@@ -61,6 +61,8 @@ function TodoContainer(props) {
   }, [dispatch, effect])
 
   return (
+    <>
+      <AddTodo submit={submit} />
     <Todos
       saveTodo={saveTodo}
       deleteTodo={deleteTodo}
