@@ -18,7 +18,7 @@ function LoginContainer(props) {
         localStorage.setItem('user', JSON.stringify(response))
         history.push('/todos')
       })
-      .catch((err) => alert(err))
+      .catch((err) => alert('User Not Found in Database'))
   }
   return <Login setUsers={setUsers} setPassword={setPassword} submit={submit} />
 }
