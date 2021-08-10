@@ -1,47 +1,72 @@
+import TableData from './TableData'
 const TodoTable = ({
   todo,
   id,
+  pending,
+  onGoing,
+  testing,
   completed,
   completeTodo,
   editTodo,
   deleteTodo,
+  description,
 }) => {
   return (
     <tr>
-      <td style={{ textDecoration: completed ? 'line-through' : '' }}>
-        {todo}
-      </td>
-      <td>
-        <a
-          href="!#"
-          onClick={(e) => {
-            e.preventDefault()
-            editTodo(id, todo)
-          }}
-        >
-          edit
-        </a>{' '}
-        |{' '}
-        <a
-          href="!#"
-          onClick={(e) => {
-            e.preventDefault()
-            completeTodo(id, todo, completed)
-          }}
-        >
-          complete
-        </a>{' '}
-        |{' '}
-        <a
-          href="!#"
-          onClick={(e) => {
-            e.preventDefault()
-            deleteTodo(id)
-          }}
-        >
-          delete
-        </a>
-      </td>
+      {pending ? (
+        <TableData
+          id={id}
+          todo={todo}
+          completeTodo={completeTodo}
+          description={description}
+          editTodo={editTodo}
+          pending={pending}
+          deleteTodo={deleteTodo}
+        />
+      ) : (
+        <td></td>
+      )}
+      {onGoing ? (
+        <TableData
+          id={id}
+          todo={todo}
+          completeTodo={completeTodo}
+          editTodo={editTodo}
+          onGoing={onGoing}
+          deleteTodo={deleteTodo}
+          description={description}
+        />
+      ) : (
+        <td></td>
+      )}
+
+      {testing ? (
+        <TableData
+          id={id}
+          todo={todo}
+          completeTodo={completeTodo}
+          editTodo={editTodo}
+          description={description}
+          testing={testing}
+          deleteTodo={deleteTodo}
+        />
+      ) : (
+        <td></td>
+      )}
+
+      {completed ? (
+        <TableData
+          id={id}
+          todo={todo}
+          completeTodo={completeTodo}
+          editTodo={editTodo}
+          completed={completed}
+          deleteTodo={deleteTodo}
+          description={description}
+        />
+      ) : (
+        <td></td>
+      )}
     </tr>
   )
 }

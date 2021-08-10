@@ -4,8 +4,19 @@ import PopupModal from './PopupModal'
 import TodoTable from './TodoTable'
 
 function Todos(props) {
-  const { saveTodo, deleteTodo, findTodo, data, setShow, setTodo, dispatch } =
-    props
+  const {
+    saveTodo,
+    deleteTodo,
+    findTodo,
+    data,
+    setShow,
+    setTodo,
+    dispatch,
+    saveCompletedTodo,
+    description,
+    setDescription,
+  } = props
+
   return (
     <>
       <PopupModal
@@ -13,17 +24,20 @@ function Todos(props) {
         setShow={setShow}
         todo={data.todo}
         setTodo={setTodo}
-        v
         dispatch={dispatch}
         click={saveTodo}
+        description={description}
+        setDescription={setDescription}
       />
       <p />
       <div className="todo-table container">
-        <Table striped bordered hover>
+        <Table striped bordered>
           <thead>
             <tr>
               <th>Todos</th>
-              <th>Actions</th>
+              <th>Going</th>
+              <th>Testing</th>
+              <th>Completed</th>
             </tr>
           </thead>
 
@@ -33,11 +47,15 @@ function Todos(props) {
                 <TodoTable
                   todo={todoItem.todo}
                   key={todoItem._id}
-                  completed={todoItem.completed}
-                  completeTodo={saveTodo}
+                  completeTodo={saveCompletedTodo}
                   editTodo={findTodo}
                   id={todoItem._id}
                   deleteTodo={deleteTodo}
+                  pending={todoItem.pending}
+                  onGoing={todoItem.onGoing}
+                  testing={todoItem.testing}
+                  description={todoItem.description}
+                  completed={todoItem.completed}
                 />
               )
             })}

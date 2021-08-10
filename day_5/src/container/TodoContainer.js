@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import AddTodo from '../Components/AddTodo'
 import Todos from '../Components/Todos'
-import { selector, setId, setShow, setTodo, todos } from '../redux/TodoSlice'
+import {
+  selector,
+  setId,
+  setShow,
+  setTodo,
+  setShowForNewTodo,
+  todos,
+  setDescription,
+} from '../redux/TodoSlice'
 import '../styles/table.css'
 import client from '../utils/client'
 
@@ -11,6 +20,22 @@ function TodoContainer(props) {
   const [userId, setUserId] = useState()
   const [effect, setEffect] = useState('')
 
+  const submit = (e) => {
+    e.preventDefault()
+    client('/todo/postNewTodo', {
+      method: 'PUT',
+      data: {
+        todo: state.todo,
+        pending: true,
+        userId: userId,
+        description: state.description,
+      },
+    }).then(() => {
+      dispatch(setShowForNewTodo(false))
+      dispatch(setTodo(''))
+      dispatch(setDescription(''))
+    })
+  }
   const deleteTodo = (id) => {
     client(`/todo/deleteTodo`, {
       method: 'DELETE',
@@ -20,17 +45,13 @@ function TodoContainer(props) {
     )
   }
 
-  const saveTodo = (id, todo, completed) => {
-    if (state.id === null) {
-      completed = !completed
-    }
-    console.log(completed)
+  const saveTodo = () => {
     client('/todo/updateTodo', {
       method: 'PATCH',
       data: {
-        todoId: state.id ? state.id : id,
-        todo: state.todo ? state.todo : todo,
-        completed: completed,
+        todoId: state.id,
+        todo: state.todo,
+        description: state.description,
       },
     })
       .then(() => {
@@ -39,10 +60,40 @@ function TodoContainer(props) {
       })
       .catch((err) => console.log(err))
   }
+  const saveCompletedTodo = (id, pending, onGoing, testing, completed) => {
+    if (pending) {
+      pending = false
+      onGoing = true
+    } else if (onGoing) {
+      onGoing = false
+      testing = true
+    } else if (testing) {
+      testing = false
+      completed = true
+    } else if (completed) {
+      completed = false
+      pending = true
+    }
+    client('/todo/updateCompletedTodo', {
+      method: 'PATCH',
+      data: {
+        todoId: id,
+        pending: pending,
+        onGoing: onGoing,
+        testing: testing,
+        completed: completed,
+      },
+    })
+      .then(() => {
+        setEffect(Math.random())
+      })
+      .catch((err) => console.log(err))
+  }
 
-  const findTodo = (id, todo) => {
+  const findTodo = (id, todo, description) => {
     dispatch(setId(id))
     dispatch(setTodo(todo))
+    dispatch(setDescription(description))
     dispatch(setShow(true))
   }
 
@@ -58,20 +109,24 @@ function TodoContainer(props) {
         dispatch(todos(response))
       })
       .catch((err) => console.log(err))
-  }, [dispatch, effect])
+  }, [dispatch, state.showForNewTodo, state.show, effect])
 
   return (
     <>
       <AddTodo submit={submit} />
-    <Todos
-      saveTodo={saveTodo}
-      deleteTodo={deleteTodo}
-      findTodo={findTodo}
-      data={state}
-      setShow={setShow}
-      setTodo={setTodo}
-      dispatch={dispatch}
-    />
+      <Todos
+        saveTodo={saveTodo}
+        deleteTodo={deleteTodo}
+        findTodo={findTodo}
+        data={state}
+        setShow={setShow}
+        setTodo={setTodo}
+        dispatch={dispatch}
+        saveCompletedTodo={saveCompletedTodo}
+        description={state.description}
+        setDescription={setDescription}
+      />
+    </>
   )
 }
 
