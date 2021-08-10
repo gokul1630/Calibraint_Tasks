@@ -1,6 +1,5 @@
 import React from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
-import '../styles/button.css'
 
 function PopupModal(props) {
   const {
