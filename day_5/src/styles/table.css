@@ -1,6 +1,8 @@
 .todo-table {
   text-align: center;
 }
-td {
-  white-space: pre;
+
+.table-data:hover {
+  background-color: rgb(207, 207, 207);
+  cursor: pointer;
 }
