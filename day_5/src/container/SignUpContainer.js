@@ -7,17 +7,24 @@ function SignUpContainer(props) {
   const [user, setUser] = useState('')
   const [password, setPassword] = useState('')
   const history = useHistory()
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault()
-    client('/user/signUpUser', {
-      method: 'PUT',
-      data: { user: user, password: password },
-    })
-      .then((response) => {
-        localStorage.setItem('user', JSON.stringify(response))
-        history.push('/todos')
+    try {
+      const token = await client('/user/signUpUser', {
+        method: 'PUT',
+        data: { user, password },
       })
-      .catch((err) => alert(err))
+      localStorage.setItem('token', JSON.stringify(token))
+    } catch (err) {
+      alert(err.response.data.message)
+    }
+    try {
+      const data = await client('/user/me', { method: 'POST' })
+      localStorage.setItem('user', JSON.stringify(data))
+      history.push('/todos')
+    } catch (err) {
+      console.log(err.response.data.message)
+    }
   }
   return <SignUp setUser={setUser} setPassword={setPassword} submit={submit} />
 }
