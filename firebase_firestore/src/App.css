@@ -1,0 +1,12 @@
+div {
+  text-align: center;
+  padding: 10px;
+}
+
+#upload-btn {
+  margin: 10px;
+}
+#img {
+  height: 200;
+  width: 200px;
+}
