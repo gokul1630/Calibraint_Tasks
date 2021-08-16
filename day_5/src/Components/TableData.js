@@ -29,7 +29,15 @@ function TableData(props) {
       <p>{description}</p>
       <IconButton
         onClick={(e) => {
-          completeTodo(id, pending, onGoing, testing, completed)
+          completeTodo(
+            todo,
+            description,
+            id,
+            pending,
+            onGoing,
+            testing,
+            completed
+          )
         }}
       >
         <NavigateNextIcon />

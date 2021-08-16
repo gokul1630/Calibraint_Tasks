@@ -45,22 +45,15 @@ function TodoContainer(props) {
     )
   }
 
-  const saveTodo = () => {
-    client('/todo/updateTodo', {
-      method: 'PATCH',
-      data: {
-        todoId: state.id,
-        todo: state.todo,
-        description: state.description,
-      },
-    })
-      .then(() => {
-        setEffect(Math.random())
-        dispatch(setShow(false))
-      })
-      .catch((err) => console.log(err))
-  }
-  const saveCompletedTodo = (id, pending, onGoing, testing, completed) => {
+  const updateTodo = (
+    todo,
+    description,
+    id,
+    pending,
+    onGoing,
+    testing,
+    completed
+  ) => {
     if (pending) {
       pending = false
       onGoing = true
@@ -74,10 +67,13 @@ function TodoContainer(props) {
       completed = false
       pending = true
     }
-    client('/todo/updateCompletedTodo', {
+
+    client('/todo/updateTodo', {
       method: 'PATCH',
       data: {
-        todoId: id,
+        todo: typeof todo === 'object' ? state.todo : todo,
+        description: description ? description : state.description,
+        todoId: id ? id : state.id,
         pending: pending,
         onGoing: onGoing,
         testing: testing,
@@ -86,6 +82,7 @@ function TodoContainer(props) {
     })
       .then(() => {
         setEffect(Math.random())
+        dispatch(setShow(false))
       })
       .catch((err) => console.log(err))
   }
@@ -115,14 +112,14 @@ function TodoContainer(props) {
     <>
       <AddTodo submit={submit} />
       <Todos
-        saveTodo={saveTodo}
+        saveTodo={updateTodo}
         deleteTodo={deleteTodo}
         findTodo={findTodo}
         data={state}
         setShow={setShow}
         setTodo={setTodo}
         dispatch={dispatch}
-        saveCompletedTodo={saveCompletedTodo}
+        saveCompletedTodo={updateTodo}
         description={state.description}
         setDescription={setDescription}
       />
