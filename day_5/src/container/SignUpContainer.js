@@ -10,20 +10,15 @@ function SignUpContainer(props) {
   const submit = async (e) => {
     e.preventDefault()
     try {
-      const token = await client('/user/signUpUser', {
+      const response = await client('/user/signUpUser', {
         method: 'PUT',
         data: { user, password },
       })
-      localStorage.setItem('token', JSON.stringify(token))
-    } catch (err) {
-      alert(err.response.data.message)
-    }
-    try {
-      const data = await client('/user/me', { method: 'POST' })
-      localStorage.setItem('user', JSON.stringify(data))
+      localStorage.setItem('token', JSON.stringify(response.token))
+      localStorage.setItem('user', JSON.stringify(response.user))
       history.push('/todos')
     } catch (err) {
-      console.log(err.response.data.message)
+      alert(err.response.data.message)
     }
   }
   return <SignUp setUser={setUser} setPassword={setPassword} submit={submit} />
